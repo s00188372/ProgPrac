@@ -27,18 +27,43 @@ namespace Program
 
             Display(playlist);
 
+            playlist.Sort();
+
+            Display(playlist);
+
+            Shuffle(playlist);
+
+            Display(playlist);
+
 
 
         }
         private static void Display(List<Song> playlist)
         {
+            WriteLine("");
             WriteLine("{0,-20}{1,-25}{2,-10}{3,-10}", "Artist","Song","Duration", "Genre");
+
 
             foreach (Song song in playlist)
             {
                 WriteLine($"{song.Artist,-20}{song.Title,-25}{song.Duration,-10}{song.MusicGenre,-10}");
             }
 
+        }
+
+        private static void Shuffle(List<Song> playlist)
+        {
+            Random random = new Random();
+            int numberOfSongs = playlist.Count;
+
+            while(numberOfSongs > 1)
+            {
+                numberOfSongs--;
+                int randomNumber = random.Next(numberOfSongs + 1);
+                Song song = playlist[randomNumber];
+                playlist[randomNumber] = playlist[numberOfSongs];
+                playlist[numberOfSongs] = song;
+            }
         }
     }
 }

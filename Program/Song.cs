@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Program
 {
-    public class Song
+    public class Song : IComparable
     {
 
         public string Title { get; set; }
@@ -37,7 +37,19 @@ namespace Program
             return string.Format($"{Title} {Artist} {Duration} {MusicGenre}");
         }
 
+        public int CompareTo(object obj)
+        {
+            Song that = (Song)obj;
 
+            int returnValue = this.Artist.CompareTo(that.Artist); //Will sort by artist
+
+            if(returnValue == 0)
+            {
+                returnValue = this.Title.CompareTo(that.Title); // if artist the same, sort by title
+            }
+
+            return returnValue;
+        }
     }
 
     public enum Genre{Rock, Pop,Dance, Other }
