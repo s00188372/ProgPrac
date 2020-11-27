@@ -17,6 +17,27 @@ namespace Program
 
         public Genre MusicGenre { get; set; }
 
+        public Song(string title, string artist, double duration, Genre musicGenre)
+        {
+            Title = title;
+            Artist = artist;
+            Duration = duration;
+            MusicGenre = musicGenre;
+        }
+
+        public Song(string title, string artist) : this(title, artist,0,Genre.Other)
+        {
+        }
+
+        public Song() : this("Unknown", "Unknown")
+        {
+        }
+        public override string ToString()
+        {
+            return string.Format($"{Title} {Artist} {Duration} {MusicGenre}");
+        }
+
+
     }
 
     public enum Genre{Rock, Pop,Dance, Other }
